@@ -26,12 +26,12 @@ h1 {
 }
 main {
   background-color: #E8D9BF;
-  padding: 0 10px;
 }
 .top_lead {
   text-align: center;
   max-width: 1000px;
   margin: 0 auto;
+  padding: 0 10px;
 }
 .top_lead h2 {
   font-size: 30px;
@@ -56,22 +56,30 @@ main {
   display: block;
   margin: 0 auto;
 }
+#Aboutus {
+  padding: 0 10px;
+}
 .aboutus_container {
   max-width: 1000px;
   display: flex;
+  align-items: center;
   margin: 0 auto;
   padding-bottom: 44px;
 }
 .aboutus_img {
-  width: 500px;
+  width: 50%;
+}
+.aboutus_img img {
   border-radius: 0 0 82px 0;
 }
 .aboutus_lead {
+  width: 50%;
   padding-left: 80px;
 }
 .aboutus_lead h2 img {
   margin: 0;
   text-align: left;
+  padding-top: 0;
 }
 .aboutus_lead h3 {
   font-size: 44px;
@@ -83,6 +91,9 @@ main {
   font-size: 16px;
   line-height: 1.62;
   font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+}
+#Menu{
+  padding: 0 10px;
 }
 .menu_item {
   display: flex;
@@ -118,6 +129,9 @@ main {
 .gallery_item li {
   width: 384px;
   margin: 24px auto 6px auto;
+}
+#Event {
+  padding: 0 10px;
 }
 .event_list {
   max-width: 1000px;
