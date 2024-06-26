@@ -1,4 +1,5 @@
 @charset "utf-8";
+/*** header ***/
 .header-contents {
   display: flex;
   justify-content: space-between;
@@ -24,9 +25,90 @@ h1 {
   font-weight: bold;
   font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
 }
+.hamburger,
+.header-nav-sp {
+  display: none;
+}
+@media screen and (max-width: 1100px){
+  .header-nav {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 9999;
+  }
+  .hamburger span {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+    top: 13px;
+    /* 3秒かけて.open spanになる */
+    transition: .3s;
+  }
+  .hamburger span::before {
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+    top: -10px;
+    transition: .3s;
+  }
+  .hamburger span::after {
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+    bottom: -10px;
+    transition: .3s;
+  }
+  .open span {
+    /* 透明にする */
+    background-color: transparent;
+  }
+  .open span::before {
+    /* 45度回転させる */
+    transform: rotate(45deg);
+    top: 0;
+  }
+  .open span::after {
+    /* 反対側に45度回転させる */
+    transform: rotate(-45deg);
+    bottom: 0;
+  }
+  .header-nav-sp {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: #00000077;
+  }
+  .header-nav-sp ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 20px;
+  }
+  .header-nav-sp li {
+    color: #fff;
+  font-weight: bold;
+  font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+  }
+}
 main {
   background-color: #E8D9BF;
 }
+
+/*** top_lead ***/
 .top_lead {
   text-align: center;
   max-width: 1000px;
@@ -43,12 +125,48 @@ main {
   font-weight: normal;
   line-height: 1.17;
 }
+.top_lead-br {
+  display: none;
+}
 .top_lead p {
   font-size: 23px;
   padding: 45px 0 100px;
   line-height: 1.65;
   margin: 0 auto;
 }
+@media screen and (max-width: 1100px) {
+  .top_lead h2 {
+    font-size: 24px;
+  }
+  .top_lead h3 {
+    font-size: 56px;
+    line-height: 1.2;
+  }
+  .top_lead p {
+    font-size: 18px;
+    line-height: 1.7;
+  }
+}
+@media screen and (max-width: 767px) {
+  .top_lead h2 {
+    font-size: 17px;
+    padding: 40px 0 32px;
+  }
+  .top_lead h3 {
+    font-size: 36px;
+    line-height: 1.26;
+  }
+  .top_lead-br {
+    display: inline;
+  }
+  .top_lead p {
+    font-size: 16px;
+    padding: 24px 0 64px;
+    line-height: 1.88;
+  }
+}
+
+/*** Aboutus ***/
 .heading {
   height: 55px;
   width: auto;
@@ -92,6 +210,48 @@ main {
   line-height: 1.62;
   font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
 }
+.aboutus_container-sp {
+  display: none;
+}
+@media screen and (max-width: 1100px) {
+  .aboutus_lead h3 {
+    font-size: 40px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .heading {
+    padding-top: 0;
+  }
+  #Aboutus {
+    padding: 0;
+  }
+  .aboutus_container {
+    display: none;
+  }
+  .aboutus_container-sp {
+    display: block;
+    
+  }
+  .aboutus_container-sp h2 {
+    padding-bottom: 16px;
+  }
+  .aboutus_img-sp {
+    width: 100%;
+  }
+  .aboutus_container-sp h3 {
+    font-size: 36px;
+    line-height: 1.25;
+    font-weight: normal;
+    padding: 36px 20px 30px;
+  }
+  .aboutus_container-sp p {
+    font-size: 16px;
+    line-height: 1.75;
+    padding: 0 20px 56px;
+  }
+}
+
+/*** Menu ***/
 #Menu{
   padding: 0 10px;
 }
@@ -104,6 +264,8 @@ main {
 }
 .menu_item-list {
   width: 300px;
+}
+.menu_item-list picture {
   position: relative;
 }
 .menu_img {
@@ -115,13 +277,35 @@ main {
   color: #D30202;
   position: absolute;
   z-index: 1;
-  bottom: 88px;
+  bottom: -25px;
   padding-left: 12px;
 }
 .menu_item-list p {
   margin-top: 45px;
   line-height: 1.47;
 }
+@media screen and (max-width: 767px) {
+  #Menu {
+    padding: 0 36px;
+  }
+  .menu_item {
+    flex-direction: column;
+    padding: 24px 0 32px;
+  }
+  .menu_item-list {
+    width: 100%;
+  }
+  .menu_item-list h3 {
+    font-size: 40px;
+  }
+  .menu_item-list p {
+    font-size: 17px;
+    line-height: 1.59;
+    padding-bottom: 60px;
+  }
+}
+
+/*** Gallery ***/
 .gallery_item {
   display: flex;
   justify-content: center;
@@ -130,6 +314,16 @@ main {
   width: 384px;
   margin: 24px auto 6px auto;
 }
+@media screen and (max-width: 767px) {
+  .gallery_item li {
+    width: 100%;
+  }
+  .gallery_item-pc {
+    display: none;
+  }
+}
+
+/*** Event ***/
 #Event {
   padding: 0 10px;
 }
@@ -148,16 +342,37 @@ main {
   align-items: center;
 }
 .event_list li time {
-  margin-right: 24px;
-  text-align: right;
+  text-align: center;
   flex: 0.3;
 }
 .event_list li p {
   text-decoration: underline;
   text-align: left;
-  margin-left: 24px;
   flex: 0.7;
 }
+@media screen and (max-width: 767px) {
+  #Event {
+    padding: 32px 20px;
+  }
+  .event_list {
+    padding: 20px 27px;
+  }
+  .event_list li {
+    flex-direction: column;
+    align-items: flex-start; 
+  }
+  .event_list time {
+    text-align: left;
+  }
+  .event_list p {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/*** Access ***/
 .access_map {
   height: 470px;
   margin-top: 45px;
@@ -167,6 +382,14 @@ main {
   height: 100%;
   filter: grayscale(100%) invert(92%) contrast(83%);
 }
+@media screen and (max-width: 767px) {
+  .access_map {
+    margin-top: 12px;
+    height: 190px;
+  }
+}
+
+/*** footer ***/
 footer {
   height: 392px;
 }
@@ -191,6 +414,25 @@ footer {
   display: block;
   text-align: center;
   font-size: 16px;
+}
+@media screen and (max-width: 767px) {
+  .footer-content {
+    flex-direction: column;
+    padding: 50px 20px 30px;
+  }
+  .footer-logo {
+    width: 100%;
+  }
+  .footer-logo img {
+    margin: 0;
+  }
+  .footer-info {
+    padding: 32px 0 40px;
+  }
+  .footer-info p {
+    font-size: 18px;
+    line-height: 1.72;
+  }
 }
 .toTop {
   height: 125px;
