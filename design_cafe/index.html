@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>デザインカフェ</title>
     <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link href="./css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
 <body>
   <header id="header">
@@ -47,6 +51,13 @@
           media="(max-width :767px)"
         />
         <img src="images/pc_first-100.jpg" alt="カフェ店内の様子">
+      </picture>
+      <picture>
+        <source
+          srcset="./images/sp_main_vs_2@2x-100.jpg"
+          media="(max-width :767px)"
+        />
+        <img src="images/slider_2.jpg" alt="カフェ店内の様子">
       </picture>
     </div>
   </header>
@@ -119,18 +130,19 @@
     <section id="Gallery">
       <h2><img src="images/gallery@2x.png" class="heading" alt="GALLERY"></h2>
       <ul class="gallery_item">
-        <li class="gallery_item-pc"><img src="images/pc_gallary_05-100.jpg" alt="お客様"></li>
-        <li class="gallery_item-pc"><img src="images/pc_gallary_04-100.jpg" alt="コーヒー豆"></li>
+        <li class="gallery_item-pc"><a href="images/pc_gallary_05-100.jpg" data-lightbox="image-set"><img src="images/pc_gallary_05-100.jpg" alt="お客様"></a></li>
+        <li class="gallery_item-pc"><a href="images/pc_gallary_04-100.jpg" data-lightbox="image-set"><img src="images/pc_gallary_04-100.jpg" alt="コーヒー豆"></a></li>
         <li class="gallery_item-sp">
-          <picture>
-            <source
-              srcset="./images/mobile_gallery-100.jpg"
-              media="(max-width :767px)"
-            />
-            <img src="images/pc_gallary_03-100.jpg" alt="店内"></li>
-          </picture>
-        <li class="gallery_item-pc"><img src="images/pc_gallary_02-100.jpg" alt="カウンター"></li>
-        <li class="gallery_item-pc"><img src="images/pc_gallary_01-100.jpg" alt="カフェラテ"></li>
+          <a href="images/pc_gallary_03-100.jpg" data-lightbox="image-set">
+            <picture>
+              <source srcset="./images/mobile_gallery-100.jpg" media="(max-width :767px)" />
+              <img src="images/pc_gallary_03-100.jpg" alt="店内">
+            </picture>
+          </a>
+        </li>
+        <li class="gallery_item-pc"><a href="images/pc_gallary_02-100.jpg" data-lightbox="image-set"><img src="images/pc_gallary_02-100.jpg" alt="カウンター"></a></li>
+        <li class="gallery_item-pc"><a href="images/pc_gallary_01-100.jpg" data-lightbox="image-set"><img src="images/pc_gallary_01-100.jpg" alt="カフェラテ"></a></li>
+        <li class="gallery_item-pc"><a href="images/pc_gallary_05-100.jpg" data-lightbox="image-set"><img src="images/pc_gallary_05-100.jpg" alt="お客様"></a></li>
       </ul>
     </section>
     <section id="Event">
@@ -155,7 +167,7 @@
     <section id="Access">
       <h2><img src="images/access@2x.png" class="heading" alt="ACCESS"></h2>
       <div class="access_map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8330566914933!2d139.76451597525056!3d35.68111242998139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1718682112196!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8330566914933!2d139.76451597525056!3d35.68111242998139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1718682112196!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </section>
   </main>
@@ -175,13 +187,83 @@
       </a>
     </p>
   </footer>
+  <script src="./js/lightbox.min.js"></script>
   <script>
+    // ハンバーガー
     $(function () {
       $(".hamburger").click(function () {
         $(".hamburger").toggleClass("open");
         $(".header-nav-sp").fadeToggle();
       });
     });
+
+    // メインビジュアルスライダー
+    $(function () {
+      $(".mainvisual").slick({
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        dots: true,
+      });
+    });
+
+    // ギャラリースライダー
+    $(function () {
+  function initializeSlider() {
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      $(".gallery_item").slick({
+        arrows: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000
+      });
+    } else {
+      $(".gallery_item").slick({
+        arrows: false,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000
+      });
+    }
+  }
+  // 初期化
+  initializeSlider();
+  // リサイズ時にスライダーを再初期化
+  $(window).resize(function () {
+    $(".gallery_item").slick('unslick'); // 既存のスライダーを破棄
+    initializeSlider(); // 再初期化
+  });
+});
+
+    // Lightbox2のオプション設定
+    lightbox.option({
+        'alwaysShowNavOnTouchDevices': true
+      });
   </script>
+<!--
+The MIT License (MIT)
+
+Copyright (c) 2015 Lokesh Dhakar
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
 </body>
 </html>
