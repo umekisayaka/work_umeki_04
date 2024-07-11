@@ -281,9 +281,6 @@ main {
 .menu_item-list {
   width: 300px;
 }
-.menu_item-list picture {
-  position: relative;
-}
 .menu_img {
   border-radius: 0 42px 0 0;
 }
@@ -291,13 +288,12 @@ main {
   font-size: 38px;
   font-weight: normal;
   color: #D30202;
-  position: absolute;
   z-index: 1;
-  bottom: -25px;
+  margin-top: -12px;
   padding-left: 12px;
 }
 .menu_item-list p {
-  margin-top: 45px;
+  margin-top: 12px;
   line-height: 1.47;
 }
 @media screen and (max-width: 767px) {
